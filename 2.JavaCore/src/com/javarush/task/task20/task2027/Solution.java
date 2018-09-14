@@ -38,7 +38,7 @@ same - (1, 1) - (4, 1)
         List<String> ordinalList = null;
         List<String> reverseList = null;
 
-        //vertical
+        //vertical - working
         //make an ordinal and reverse lists of all vertical LINES
         ordinalList = new ArrayList<>();
         reverseList = new ArrayList<>();
@@ -105,7 +105,7 @@ same - (1, 1) - (4, 1)
 //        }
 
         /*
-        //horizontal
+        //horizontal - working
         //make an ordinal and reverse lists of all horizontal LINES
         ordinalList = new ArrayList<>();
         reverseList = new ArrayList<>();
