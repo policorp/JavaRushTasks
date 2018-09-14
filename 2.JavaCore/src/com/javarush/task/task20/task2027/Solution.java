@@ -35,8 +35,8 @@ same - (1, 1) - (4, 1)
         List<Word> list = new ArrayList<>();
         Word bufferWord = null;
         StringBuilder sb = new StringBuilder();
-        List<String> ordinalList = new ArrayList<>();
-        List<String> reverseList = new ArrayList<>();
+        List<String> ordinalList = null;
+        List<String> reverseList = null;
 
         //vertical
         //make an ordinal and reverse lists of all vertical LINES
