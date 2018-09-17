@@ -16,11 +16,11 @@ public class Solution {
 //                {'p', 'o', 'e', 'e', 'j', 'j'}
 //        };
         int[][] crossword = new int[][]{
-                {'s', 'm', 'a', 'e', 'a', 'e'},
-                {'h', 'x', 'h', 'e', 'h', 's'},
-                {'p', 'a', 'm', 'm', 'a', 'e'},
-                {'d', 'e', 'm', 'm', 'x', 'k'},
-                {'h', 'e', 'e', 'r', 'a', 'e'}
+                {'e', 'm', 'e', 'e', 'a', 'e'},
+                {'d', 'f', 'h', 'x', 'x', 's'},
+                {'e', 'a', 'a', 'm', 'a', 'a'},
+                {'d', 'x', 'm', 'x', 'x', 'h'},
+                {'h', 'e', 'f', 'e', 'e', 'e'}
         };
         System.out.println(detectAllWords(crossword, "home", "same", "axe"));
         /*
@@ -44,20 +44,115 @@ same - (1, 1) - (4, 1)
         reverseList = new ArrayList<>();
         sb = new StringBuilder();
 
+        //filling ordinal, reverse arrays
+        for (int y = crossword.length - 1; y >= 0; y--) {
+            int x = 0;
+            int dy = y;
+            while ((dy < crossword.length) && (x < crossword[0].length)) {
+                sb.append((char)crossword[dy][x]);
+                dy++;
+                x++;
+            }
+            ordinalList.add(sb.toString());
+            reverseList.add(sb.reverse().toString());
+            sb = new StringBuilder();
+        }
+        for (int x = 1; x < crossword[0].length; x++) {
+            int y = 0;
+            int dx = x;
+            while ((dx < crossword[0].length) && (y < crossword.length)) {
+                sb.append((char)crossword[y][dx]);
+                y++;
+                dx++;
+            }
+            ordinalList.add(sb.toString());
+            reverseList.add(sb.reverse().toString());
+            sb = new StringBuilder();
+        }
+
+        //looking for words inside of LINES
+        for (String word: words) {
+            //check ordinal list
+            for (int i = 0; i < ordinalList.size(); i++) {
+                int status = ordinalList.get(i).indexOf(word);
+                if (status == -1) {
+                    continue;
+                } else {
+                    //working
+                    int startX = i < crossword.length ? 0 + status : i - crossword.length + 1 + status;
+                    int startY = i < crossword.length ? crossword.length - i - 1 + status : 0 + status;
+                    int endX = startX + word.length() - 1;
+                    int endY = startY + word.length() - 1;
+//                    //simler version below w/o
+//                    if (i < crossword.length) {
+//                        //
+//                        startX = 0 + status;
+//                        startY = crossword.length - i - 1 + status;
+//                        endX = startX + word.length() - 1;
+//                        endY = startY + word.length() - 1;
+//                    } else {
+//                        //
+//                        startX = i - crossword.length + 1 + status;
+//                        startY = 0 + status;
+//                        endX = startX + word.length() - 1;
+//                        endY = startY + word.length() - 1;
+//                    }
+
+                    bufferWord = new Word(word);
+                    bufferWord.setStartPoint(startX, startY);
+                    bufferWord.setEndPoint(endX, endY);
+                    list.add(bufferWord);
+                }
+            }
+
+            //check reverse list
+            for (int i = 0; i < reverseList.size(); i++) {
+                int status = reverseList.get(i).indexOf(word);
+                if (status == -1) {
+                    continue;
+                } else {
+                    //
+                    int startX = i < crossword[0].length ? i - status : crossword[0].length - 1 - status;
+                    int startY = i < crossword[0].length ? crossword.length - 1 - status : crossword.length - (i - crossword[0].length) - status - 2;;
+                    int endX = startX - word.length() + 1;
+                    int endY = startY - word.length() + 1;
+                    //simler version below w/o
+//                    if ( i < crossword[0].length) {
+//                        //
+//                        startX = i - status;
+//                        startY = crossword.length - 1 - status;
+//                        endX = startX - word.length() + 1;
+//                        endY = startY - word.length() + 1;
+//                    }
+//                    else {
+//                        //
+//                        startX = crossword[0].length - 1 - status;
+//                        startY = crossword.length - (i - crossword[0].length) - status - 2;
+//                        endX = startX - word.length() + 1;
+//                        endY = startY - word.length() + 1;
+//                    }
+
+                    bufferWord = new Word(word);
+                    bufferWord.setStartPoint(startX, startY);
+                    bufferWord.setEndPoint(endX, endY);
+                    list.add(bufferWord);
+                }
+            }
+        }
 
         //diagonal right to left
 
         //print buffer lists
-        System.out.println("ordinal:");
-        for (String s: ordinalList) {
-            System.out.println(s);
-        }
-        System.out.println("reverse:");
-        for (String s: reverseList) {
-            System.out.println(s);
-        }
+//        System.out.println("ordinal:");
+//        for (String s: ordinalList) {
+//            System.out.println(s);
+//        }
+//        System.out.println("reverse:");
+//        for (String s: reverseList) {
+//            System.out.println(s);
+//        }
 
-        /*
+
         //vertical - working
         //make an ordinal and reverse lists of all vertical LINES
         ordinalList = new ArrayList<>();
@@ -274,8 +369,6 @@ same - (1, 1) - (4, 1)
                 }
             }
         } //diagonal left-to-right
-        */
-
 
 
         return list;
