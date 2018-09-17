@@ -8,21 +8,15 @@ import java.util.List;
 */
 public class Solution {
     public static void main(String[] args) {
-//        int[][] crossword = new int[][]{
-//                {'f', 'd', 'e', 'r', 'l', 'k'},
-//                {'u', 's', 'a', 'm', 'e', 'o'},
-//                {'l', 'n', 'g', 'r', 'o', 'v'},
-//                {'m', 'l', 'p', 'r', 'r', 'h'},
-//                {'p', 'o', 'e', 'e', 'j', 'j'}
-//        };
         int[][] crossword = new int[][]{
-                {'e', 'm', 'e', 'e', 'a', 'e'},
-                {'d', 'f', 'h', 'x', 'x', 's'},
-                {'e', 'a', 'a', 'm', 'a', 'a'},
-                {'d', 'x', 'm', 'x', 'x', 'h'},
-                {'h', 'e', 'f', 'e', 'e', 'e'}
+                {'f', 'd', 'e', 'r', 'l', 'k'},
+                {'u', 's', 'a', 'm', 'e', 'o'},
+                {'l', 'n', 'g', 'r', 'o', 'v'},
+                {'m', 'l', 'p', 'r', 'r', 'h'},
+                {'p', 'o', 'e', 'e', 'j', 'j'}
         };
-        System.out.println(detectAllWords(crossword, "home", "same", "axe"));
+
+        detectAllWords(crossword, "home", "same");
         /*
 Ожидаемый результат
 home - (5, 3) - (2, 0)
@@ -83,21 +77,6 @@ same - (1, 1) - (4, 1)
                     int startY = i < crossword.length ? crossword.length - i - 1 + status : 0 + status;
                     int endX = startX + word.length() - 1;
                     int endY = startY + word.length() - 1;
-//                    //simler version below w/o
-//                    if (i < crossword.length) {
-//                        //
-//                        startX = 0 + status;
-//                        startY = crossword.length - i - 1 + status;
-//                        endX = startX + word.length() - 1;
-//                        endY = startY + word.length() - 1;
-//                    } else {
-//                        //
-//                        startX = i - crossword.length + 1 + status;
-//                        startY = 0 + status;
-//                        endX = startX + word.length() - 1;
-//                        endY = startY + word.length() - 1;
-//                    }
-
                     bufferWord = new Word(word);
                     bufferWord.setStartPoint(startX, startY);
                     bufferWord.setEndPoint(endX, endY);
@@ -116,22 +95,6 @@ same - (1, 1) - (4, 1)
                     int startY = i < crossword[0].length ? crossword.length - 1 - status : crossword.length - (i - crossword[0].length) - status - 2;;
                     int endX = startX - word.length() + 1;
                     int endY = startY - word.length() + 1;
-                    //simler version below w/o
-//                    if ( i < crossword[0].length) {
-//                        //
-//                        startX = i - status;
-//                        startY = crossword.length - 1 - status;
-//                        endX = startX - word.length() + 1;
-//                        endY = startY - word.length() + 1;
-//                    }
-//                    else {
-//                        //
-//                        startX = crossword[0].length - 1 - status;
-//                        startY = crossword.length - (i - crossword[0].length) - status - 2;
-//                        endX = startX - word.length() + 1;
-//                        endY = startY - word.length() + 1;
-//                    }
-
                     bufferWord = new Word(word);
                     bufferWord.setStartPoint(startX, startY);
                     bufferWord.setEndPoint(endX, endY);
@@ -311,22 +274,6 @@ same - (1, 1) - (4, 1)
                     int startY = i < crossword.length ? i - status : crossword.length - 1 - status;
                     int endX = startX + word.length() - 1;
                     int endY = startY - word.length() + 1;
-                    //simler version below w/o
-//                    if ( i < crossword.length) {
-//                        //
-//                        startX = 0 + status;
-//                        startY = i - status;
-//                        endX = startX + word.length() - 1;
-//                        endY = startY - word.length() + 1 ;
-//                    }
-//                    else {
-//                        //
-//                        startX = i - crossword.length + 1 + status;
-//                        startY = crossword.length - 1 - status;
-//                        endX = startX + word.length() - 1;
-//                        endY = startY - word.length() + 1;
-//                    }
-
                     bufferWord = new Word(word);
                     bufferWord.setStartPoint(startX, startY);
                     bufferWord.setEndPoint(endX, endY);
@@ -346,22 +293,6 @@ same - (1, 1) - (4, 1)
                     int startY = i < crossword[0].length ? 0 + status : i - crossword[0].length + 1;
                     int endX = startX - word.length() + 1;
                     int endY = startY + word.length() - 1;
-                    //simler version below w/o
-//                    if ( i < crossword[0].length) {
-//                        //
-//                        startX = i - status;
-//                        startY = 0 + status;
-//                        endX = startX - word.length() + 1;
-//                        endY = startY + word.length() - 1 ;
-//                    }
-//                    else {
-//                        //
-//                        startX = crossword[0].length - status - 1;
-//                        startY = i - crossword[0].length + 1;
-//                        endX = startX - word.length() + 1;
-//                        endY = startY + word.length() - 1;
-//                    }
-
                     bufferWord = new Word(word);
                     bufferWord.setStartPoint(startX, startY);
                     bufferWord.setEndPoint(endX, endY);
@@ -369,8 +300,6 @@ same - (1, 1) - (4, 1)
                 }
             }
         } //diagonal left-to-right
-
-
         return list;
     }
 
