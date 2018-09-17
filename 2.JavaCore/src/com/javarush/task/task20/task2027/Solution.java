@@ -8,21 +8,51 @@ import java.util.List;
 */
 public class Solution {
     public static void main(String[] args) {
-        int[][] crossword = new int[][]{
-                {'f', 'd', 'e', 'r', 'l', 'k'},
-                {'u', 's', 'a', 'm', 'e', 'o'},
-                {'l', 'n', 'g', 'r', 'o', 'v'},
-                {'m', 'l', 'p', 'r', 'r', 'h'},
-                {'p', 'o', 'e', 'e', 'j', 'j'}
-        };
+        List<Word> list = null;
 
-        detectAllWords(crossword, "home", "same");
+//        int[][] crossword = new int[][]{
+//                {'f', 'd', 'e', 'r', 'l', 'k'},
+//                {'u', 's', 'a', 'm', 'e', 'o'},
+//                {'l', 'n', 'g', 'r', 'o', 'v'},
+//                {'m', 'l', 'p', 'r', 'r', 'h'},
+//                {'p', 'o', 'e', 'e', 'j', 'j'}
+//        };
+//        list = detectAllWords(crossword, "home", "same");
+
+//        int[][] crossword = new int[][]{
+//                {'f', 'd', 'e', 'r', 'l', 'k', 'd', 'e', 'r', 'l', 'k'},
+//                {'u', 's', 'a', 'm', 'e', 'o', 's', 'a', 'm', 'e', 'o'},
+//                {'l', 'n', 'g', 'r', 'o', 'v', 'n', 'g', 'r', 'o', 'v'},
+//                {'m', 'l', 'p', 'r', 'r', 'h', 'l', 'p', 'r', 'r', 'h'},
+//                {'p', 'o', 'e', 'e', 'j', 'j', 'o', 'e', 'e', 'j', 'j'},
+//                {'l', 'n', 'g', 'r', 'o', 'v', 'n', 'g', 'r', 'o', 'v'},
+//                {'m', 'l', 'p', 'r', 'r', 'h', 'l', 'p', 'r', 'r', 'h'},
+//                {'p', 'o', 'e', 'e', 'j', 'j', 'o', 'e', 'e', 'j', 'j'}
+//        };
+//        list = detectAllWords(crossword, "pmlpml");
+
+
+
+        int[][] crossword = new int[][]{
+                {'f', 'e', 'e', 'e', 'l', 'e'},
+                {'u', 's', 'n', 'n', 'n', 'o'},
+                {'l', 'e', 'n', 'o', 'n', 'e'},
+                {'m', 'm', 'n', 'n', 'n', 'h'},
+                {'p', 'e', 'e', 'e', 'j', 'e'},
+        };
+        list = detectAllWords(crossword, "one");
+
+        System.out.println("data:");
+        for (Word w : list) {
+            System.out.println(w);
+        }
+        System.out.println("size: \n" + list.size());
+    }
         /*
 Ожидаемый результат
 home - (5, 3) - (2, 0)
 same - (1, 1) - (4, 1)
          */
-    }
 
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
         //
@@ -143,7 +173,7 @@ same - (1, 1) - (4, 1)
                 else {
                     int startY = status;
                     int startX = x;
-                    int endY = startY + word.length();
+                    int endY = startY + word.length() - 1;
                     int endX = x;
                     bufferWord = new Word(word);
                     bufferWord.setStartPoint(startX, startY);
