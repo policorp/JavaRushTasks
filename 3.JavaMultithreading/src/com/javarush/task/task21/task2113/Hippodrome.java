@@ -21,6 +21,7 @@ public class Hippodrome {
         }
         game = new Hippodrome(list);
         game.run();
+        game.printWinner();
     }
 
     public Hippodrome(List horses) {
