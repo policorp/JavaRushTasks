@@ -11,7 +11,7 @@ import java.util.List;
 public class Hippodrome {
     private List<Horse> horses;
     public static Hippodrome game;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello hippodrome!");
         List<Horse> list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -19,6 +19,7 @@ public class Hippodrome {
             list.add(horse);
         }
         game = new Hippodrome(list);
+        game.run();
     }
 
     public Hippodrome(List horses) {
