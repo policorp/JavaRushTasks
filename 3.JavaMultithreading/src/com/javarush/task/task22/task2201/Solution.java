@@ -16,6 +16,9 @@ public class Solution {
     private Thread thread3;
 
     public Solution() {
+//        getPartOfString("A\tB\tC\tD\tE\tF\tG\tH\tI", FIRST_THREAD_NAME);
+//        getPartOfString("J\tK\tL\tM\tN\tO\tP\tQ\tR\tS\tT\tU\tV\tW\tX\tY\tZ", SECOND_THREAD_NAME);
+//        getPartOfString("\t\t", "3#");
         initThreads();
     }
 
@@ -32,22 +35,28 @@ public class Solution {
     }
 
     public synchronized String getPartOfString(String string, String threadName) {
+        int start = 0;
+        int end = 0;
+        StringBuilder sb;
 
-
-
-
-
-        if (string == null || string.isEmpty() || string.indexOf("\t") == -1) {
-            if (threadName.equals(Solution.FIRST_THREAD_NAME))
-                throw new TooShortStringFirstThreadException();
-            if (threadName.equals(Solution.SECOND_THREAD_NAME))
-                throw new TooShortStringSecondThreadException();
-            throw new RuntimeException();
+        try {
+            sb = new StringBuilder(string);
+            start = sb.indexOf("\t") + 1;
+            sb = new StringBuilder(sb.substring(start));
+            end = string.length() - (sb.reverse().indexOf(("\t")) + 1);
+//            System.out.printf("string =>%s<, start = %d, end = %d, length=%d\n", string, start, end, string.length());
+//            System.out.printf("mod string =>%s<, length=%d<\n\n", string.substring(start, end), string.substring(start, end).length());
+            return string.substring(start, end);
         }
-        StringBuilder sb = new StringBuilder(string);
-        int start = sb.indexOf("\t");
-        int end = sb.length() - sb.reverse().indexOf("\t");
-//        System.out.printf("string = %s, start = %d, end = %d\n", string, start, end);
-        return string.substring(start, end);
+        catch (TooShortStringFirstThreadException e) {
+            e.printStackTrace();
+        }
+        catch (TooShortStringSecondThreadException e) {
+            e.printStackTrace();
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
