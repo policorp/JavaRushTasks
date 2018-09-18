@@ -30,6 +30,15 @@ public class Hippodrome {
         }
     }
 
+    public void run() {
+    }
+
+    public void move() {
+    }
+
+    public void print() {
+    }
+
     public List<Horse> getHorses() {
         return horses;
     }
