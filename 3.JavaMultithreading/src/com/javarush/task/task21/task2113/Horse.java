@@ -43,6 +43,10 @@ public class Horse {
     }
 
     public void print() {
-
+        int dist = (int)this.distance;
+        for (int i = 0; i < dist; i++) {
+            System.out.print(".");
+        }
+        System.out.println(this.name);
     }
 }

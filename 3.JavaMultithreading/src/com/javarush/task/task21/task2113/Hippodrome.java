@@ -15,6 +15,7 @@ public class Hippodrome {
         System.out.println("Hello hippodrome!");
         List<Horse> list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
+            String name = (i % 2 == 0 ? "Stew" : "Robb") + (i % 3 == 0 ? "boy" : "girl") + i;
             Horse horse = new Horse("name" + i, 3, 0);
             list.add(horse);
         }
