@@ -58,4 +58,17 @@ public class Hippodrome {
     public List<Horse> getHorses() {
         return horses;
     }
+
+    public Horse getWinner() {
+        Horse winner = new Horse("winner", 3, 0);
+        for (Horse horse: horses) {
+            if (winner.getDistance() < horse.getDistance())
+                winner = horse;
+        }
+        return winner;
+    }
+
+    public void printWinner() {
+        System.out.println("Winner is " + getWinner().getName() + "!");
+    }
 }
