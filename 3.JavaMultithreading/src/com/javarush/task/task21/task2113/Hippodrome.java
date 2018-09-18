@@ -39,6 +39,9 @@ public class Hippodrome {
     }
 
     public void move() {
+        for (Horse horse: this.getHorses()) {
+            horse.move();
+        }
     }
 
     public void print() {
