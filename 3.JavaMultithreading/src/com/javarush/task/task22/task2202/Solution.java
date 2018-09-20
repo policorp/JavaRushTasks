@@ -1,7 +1,5 @@
 package com.javarush.task.task22.task2202;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*
 Найти подстроку
