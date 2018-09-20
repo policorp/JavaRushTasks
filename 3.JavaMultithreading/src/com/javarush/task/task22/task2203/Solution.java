@@ -14,7 +14,7 @@ public class Solution {
     }
 
     public static class TooShortStringException extends Exception {
-        //
+        //check it
     }
 
     public static void main(String[] args) throws TooShortStringException {
